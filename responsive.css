@@ -1,0 +1,15 @@
+/* Style responsive pour les petits écrans */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    .filter button {
+        font-size: 1rem;
+        padding: 5px 10px;
+    }
+
+    .gallery img {
+        height: 150px;
+    }
+}

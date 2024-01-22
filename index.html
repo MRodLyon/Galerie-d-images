@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head><link rel="stylesheet" href="style.css"></head>
+    <head><link rel="stylesheet" href="responsive.css"></head>
+    <head><link rel="icon" href="assets/img/icon.jfif"></head>
+    <title>Galerie d'images</title>
+</head>
+<body>
+    <h1>Galerie d'images</h1>
+    <!-- Boutons de filtre -->
+    <div class="filter">
+        <button class="active" data-filter="all">Tous</button>
+        <button data-filter="voiture">Voiture</button>
+        <button data-filter="moto">Moto</button>
+        <button data-filter="nature">Nature</button>
+        <button data-filter="animaux">Animaux</button>
+        <button data-filter="art">Art</button>
+        <button data-filter="famille">Famille</button>
+    </div>
+    <!-- Galerie d'images -->
+    <div class="gallery">
+        <img src="assets/img/voiture1.jpg" alt="Voiture 1" data-category="voiture">
+        <img src="assets/img/moto1.jpg" alt="Moto 1" data-category="moto">
+        <img src="assets/img/nature1.jpg" alt="Nature 1" data-category="nature">
+        <img src="assets/img/animaux1.jpg" alt="Animaux 1" data-category="animaux">
+        <img src="assets/img/art1.png" alt="Art 1" data-category="art">
+        <img src="assets/img/famille1.jfif" alt="Famille 1" data-category="famille">
+        <img src="assets/img/voiture2.jpg" alt="Voiture 2" data-category="voiture">
+        <img src="assets/img/moto2.jpg" alt="Moto 2" data-category="moto">
+        <img src="assets/img/nature2.png" alt="Nature 2" data-category="nature">
+        <img src="assets/img/animaux2.jpg" alt="Animaux 2" data-category="animaux">
+        <img src="assets/img/art2.png" alt="Art 2" data-category="art">
+        <img src="assets/img/famille2.jpg" alt="Famille 2" data-category="famille">
+    </div>
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+            // Sélection des éléments nécessaires
+            const filterButtons = document.querySelectorAll(".filter button");
+            const galleryImages = document.querySelectorAll(".gallery img");
+
+            // Ajout d'un gestionnaire d'événement pour chaque bouton de filtre
+            filterButtons.forEach((button) => {
+                button.addEventListener("click", function () {
+                    // Supprimer la classe "active" de tous les boutons
+                    filterButtons.forEach((btn) => btn.classList.remove("active"));
+
+                    // Ajouter la classe "active" au bouton cliqué
+                    button.classList.add("active");
+
+                    // Récupérer la catégorie du bouton cliqué
+                    const category = button.getAttribute("data-filter");
+
+                    // Filtrer les images en fonction de la catégorie
+                    galleryImages.forEach((image) => {
+                        const imageCategory = image.getAttribute("data-category");
+
+                        if (category === "all" || category === imageCategory) {
+                            image.classList.add("show");
+                            image.classList.remove("hide");
+                        } else {
+                            image.classList.add("hide");
+                            image.classList.remove("show");
+                        }
+                    });
+
+                    // Si le bouton "Tous" est cliqué, réactualiser la page
+                    if (category === "all") {
+                        location.reload();
+                    }
+                });
+            });
+        });
+
+    </script>
+</body>
+</html>
